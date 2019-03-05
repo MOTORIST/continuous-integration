@@ -1,6 +1,7 @@
 [![CircleCI](https://circleci.com/gh/MOTORIST/continuous-integration/tree/master.svg?style=svg)](https://circleci.com/gh/MOTORIST/continuous-integration/tree/master)
 [![codecov](https://codecov.io/gh/MOTORIST/continuous-integration/branch/master/graph/badge.svg)](https://codecov.io/gh/MOTORIST/continuous-integration)
-[![Known Vulnerabilities](https://snyk.io/test/npm/name/badge.svg)](https://snyk.io/test/npm/name)
+[![Known Vulnerabilities](https://dev.snyk.io/test/github/MOTORIST/continuous-integration/badge.svg)](https://dev.snyk.io/test/github/MOTORIST/continuous-integration)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
