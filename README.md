@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/MOTORIST/continuous-integration/branch/master/graph/badge.svg)](https://codecov.io/gh/MOTORIST/continuous-integration)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
