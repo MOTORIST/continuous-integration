@@ -23,3 +23,8 @@ jobs:
           name: Run Test and Coverage
           command: |
             yarn test --coverage
+      - run:
+          name: Coverage
+          when: on_success
+          command: |
+            bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
