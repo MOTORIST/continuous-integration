@@ -3,7 +3,6 @@ version: 2.1
 defaults: &defaults
   docker:
     - image: circleci/openjdk:8-jdk-node-browsers
-  parallelism: 4
 
 jobs:
   build:
@@ -43,10 +42,13 @@ jobs:
           fingerprints:
             - "ee:83:9b:5d:b1:2c:5c:29:76:b0:19:0c:2c:93:95:ea"
       - run:
-          name: 'Copying project to server'
+          name: 'Install rsync'
           command: |
-            sudo apt-get update && sudo apt-get install yarn rsync
-            rsync -va --delete ./public/ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            sudo apt-get update && sudo apt-get install rsync
+      - run:
+          name: 'Copying project to server'
+            command: |
+              rsync -va --exclude .git --delete  ./public/ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
