@@ -1,10 +1,14 @@
 version: 2.1
 
+defaults: &defaults
+  docker:
+    - image: circleci/openjdk:8-jdk-node-browsers
+  parallelism: 4
+  working_directory: ./www
+
 jobs:
   build:
-    docker:
-      - image: circleci/openjdk:8-jdk-node-browsers
-    parallelism: 4
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -19,7 +23,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run: # run tests
+      - run:
           name: Run Test and Coverage
           command: |
             yarn test --coverage
@@ -28,3 +32,30 @@ jobs:
           when: on_success
           command: |
             bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
+      - run:
+          name: Build
+          when: on_success
+          command: |
+            yarn build
+  deploy:
+    <<: *defaults
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "ee:83:9b:5d:b1:2c:5c:29:76:b0:19:0c:2c:93:95:ea"
+      - run:
+          name: 'Copying project to server'
+          command: |
+            rsync -va --delete ./www/public/ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+
+workflows:
+  version: 2.1
+  notify_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
