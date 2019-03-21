@@ -47,9 +47,9 @@ jobs:
             sudo apt-get update && sudo apt-get install rsync
       - run:
           name: 'Copying project to server'
-            command: |
-              rsync -va --exclude .git --delete  ./public/ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
-
+          command: |
+            rsync -va --exclude .git --delete  ./public/ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            
 workflows:
   version: 2.1
   notify_deploy:
