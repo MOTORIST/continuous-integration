@@ -48,7 +48,8 @@ jobs:
       - run:
           name: 'Copying project to server'
           command: |
-            rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete  ./public/ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            ls -l
+            rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete  ./ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
