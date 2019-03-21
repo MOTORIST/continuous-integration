@@ -3,6 +3,7 @@ version: 2.1
 defaults: &defaults
   docker:
     - image: circleci/openjdk:8-jdk-node-browsers
+  working_directory: ~/www
 
 jobs:
   build:
@@ -48,8 +49,8 @@ jobs:
       - run:
           name: 'Copying project to server'
           command: |
-            ls -l
-            rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete  ./ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            ls -l ~/www
+            rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~/www ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
