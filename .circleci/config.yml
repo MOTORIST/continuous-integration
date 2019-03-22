@@ -41,7 +41,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "04:b1:7b:5e:ec:4f:b4:17:21:e1:00:21:f2:e1:32:90"
+            - "51:82:9f:88:37:12:a6:4a:09:b0:5d:a7:d5:3e:99:f5"
       - run:
           name: 'Install rsync'
           command: |
@@ -49,8 +49,8 @@ jobs:
       - run:
           name: 'Copying project to server'
           command: |
-            ls ~
-            ls ~/continuous-integration
+            ls -l ~
+            ls -l ~/continuous-integration
             sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
