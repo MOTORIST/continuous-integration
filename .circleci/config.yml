@@ -49,10 +49,12 @@ jobs:
       - run:
           name: 'Copying project to server'
           command: |
-            echo ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
             ls -l ~
             ls -l ~/continuous-integration
-            sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            echo ${USER_SSH}
+            echo ${REMOTE_IP_SERVER}
+            echo ${REMOTE_PATH}
+            sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ kripton2008@84.201.150.106:/var/docker/itsmylife/www-frontend
 
 workflows:
   version: 2.1
