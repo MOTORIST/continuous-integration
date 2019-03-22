@@ -46,7 +46,7 @@ jobs:
       - run:
           name: 'Add known_hosts'
           command: |
-            ssh-keyscan -H ${REMOTE_IP_SERVER} >> ~/.ssh/known_hosts
+            echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
       - run:
           name: 'Install rsync'
           command: |
@@ -56,7 +56,7 @@ jobs:
           command: |
             ls -l ~
             ls -l ~/continuous-integration
-            sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            rsync -avce ssh --exclude .git --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
