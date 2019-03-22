@@ -43,6 +43,14 @@ jobs:
           fingerprints:
             - "51:82:9f:88:37:12:a6:4a:09:b0:5d:a7:d5:3e:99:f5"
       - run:
+          name: 'Add known_hosts'
+          command: |
+            echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
+      - run:
+          name: 'Debug ssh key'
+          command: |
+            ssh -v ${USER_SSH}@${REMOTE_IP_SERVER}
+      - run:
           name: 'Install rsync'
           command: |
             sudo apt-get update && sudo apt-get install rsync
@@ -51,10 +59,7 @@ jobs:
           command: |
             ls -l ~
             ls -l ~/continuous-integration
-            echo ${USER_SSH}
-            echo ${REMOTE_IP_SERVER}
-            echo ${REMOTE_PATH}
-            sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ kripton2008@84.201.150.106:/var/docker/itsmylife/www-frontend
+            sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
