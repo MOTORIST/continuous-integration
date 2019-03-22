@@ -49,6 +49,7 @@ jobs:
             #ssh-keyscan ${REMOTE_IP_SERVER} >> ~/.ssh/known_hosts
             #echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
             #ssh-keyscan ${REMOTE_IP_SERVER}
+            ssh -o "StrictHostKeyChecking=no" ${USER_SSH}@${REMOTE_IP_SERVER}
             echo '***********************************************';
             cat ~/.ssh/known_hosts
       - run:
@@ -60,7 +61,7 @@ jobs:
           command: |
             ls -l ~
             ls -l ~/continuous-integration
-            sudo rsync -avce 'ssh -oStrictHostKeyChecking=no' --exclude='.git' --exclude='.circleci' --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            sudo rsync -avce ssh --exclude='.git' --exclude='.circleci' --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
