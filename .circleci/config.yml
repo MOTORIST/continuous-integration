@@ -51,7 +51,7 @@ jobs:
           command: |
             ls ~
             ls ~/continuous-integration
-            rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            sudo rsync -e "ssh -o StrictHostKeyChecking=no" -va --exclude .git --delete ~ ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
