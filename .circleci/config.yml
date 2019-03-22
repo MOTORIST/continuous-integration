@@ -65,7 +65,7 @@ jobs:
           command: |
             ls -l ~
             ls -l ~/continuous-integration
-            rsync -e "ssh -o StrictHostKeyChecking=no" -avc --exclude='.git' --exclude='.circleci' --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            rsync -avc -e "ssh -o StrictHostKeyChecking=no" --rsync-path="sudo rsync"  --exclude='.git' --exclude='.circleci' --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
