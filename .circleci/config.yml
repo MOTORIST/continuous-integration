@@ -41,7 +41,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "ee:83:9b:5d:b1:2c:5c:29:76:b0:19:0c:2c:93:95:ea"
+            - "04:b1:7b:5e:ec:4f:b4:17:21:e1:00:21:f2:e1:32:90"
       - run:
           name: 'Install rsync'
           command: |
