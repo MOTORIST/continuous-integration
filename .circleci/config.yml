@@ -56,7 +56,7 @@ jobs:
           command: |
             ls -l ~
             ls -l ~/continuous-integration
-            rsync -avce ssh --exclude .git --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            sudo rsync -avce ssh --exclude .git --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
