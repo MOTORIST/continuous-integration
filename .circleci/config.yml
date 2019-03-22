@@ -45,7 +45,7 @@ jobs:
       - run:
           name: 'Add known_hosts'
           command: |
-            echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
+            ssh-keyscan -H ${REMOTE_IP_SERVER} >> ~/.ssh/known_hosts
       - run:
           name: 'Install rsync'
           command: |
