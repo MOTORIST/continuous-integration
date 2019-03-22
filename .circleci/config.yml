@@ -46,10 +46,6 @@ jobs:
       - run:
           name: 'Add known_hosts'
           command: |
-            ssh -vvv ${USER_SSH}@${REMOTE_IP_SERVER}
-      - run:
-          name: 'Add known_hosts'
-          command: |
             #ssh-keyscan ${REMOTE_IP_SERVER} >> ~/.ssh/known_hosts
             #echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
             #ssh-keyscan ${REMOTE_IP_SERVER}
