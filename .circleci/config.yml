@@ -47,10 +47,6 @@ jobs:
           command: |
             echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
       - run:
-          name: 'Debug ssh key'
-          command: |
-            ssh -v ${USER_SSH}@${REMOTE_IP_SERVER}
-      - run:
           name: 'Install rsync'
           command: |
             sudo apt-get update && sudo apt-get install rsync
