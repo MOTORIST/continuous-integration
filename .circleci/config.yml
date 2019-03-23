@@ -44,24 +44,13 @@ jobs:
           fingerprints:
             - "51:82:9f:88:37:12:a6:4a:09:b0:5d:a7:d5:3e:99:f5"
       - run:
-          name: 'Add known_hosts'
-          command: |
-            #ssh-keyscan ${REMOTE_IP_SERVER} >> ~/.ssh/known_hosts
-            #echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
-            #ssh-keyscan ${REMOTE_IP_SERVER}
-            #ssh -o "StrictHostKeyChecking=no" ${USER_SSH}@${REMOTE_IP_SERVER}
-            echo '***********************************************';
-            #cat ~/.ssh/known_hosts
-      - run:
           name: 'Install rsync'
           command: |
             sudo apt-get update && sudo apt-get install rsync
       - run:
           name: 'Copying project to server'
           command: |
-            ls -l ~
-            ls -l ~/continuous-integration
-            rsync -avc -e "ssh -o StrictHostKeyChecking=no" --rsync-path="sudo rsync"  --exclude='.git' --exclude='.circleci' --delete ~/continuous-integration/public ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
+            rsync -avc -e "ssh -o StrictHostKeyChecking=no" --rsync-path="sudo rsync"  --exclude='.git' --exclude='.circleci' --delete ~/continuous-integration/build ${USER_SSH}@${REMOTE_IP_SERVER}:${REMOTE_PATH}
 
 workflows:
   version: 2.1
