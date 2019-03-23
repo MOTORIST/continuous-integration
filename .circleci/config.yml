@@ -36,6 +36,9 @@ jobs:
           when: on_success
           command: |
             yarn build
+      - persist_to_workspace:
+          root: .
+          paths: .
   deploy:
     executor: defaults
     steps:
